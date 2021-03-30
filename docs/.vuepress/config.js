@@ -1,3 +1,3 @@
 module.exports = {
-  base: '/docs/'
+  base: '/Blog_vuepress'
 }
