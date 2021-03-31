@@ -1,11 +1,15 @@
 ---
+time: 2021-3-30
 category: 系列文章
+visitor: false
+# sidebar: false
 tags:
   - 函数式编程
   - typescript
   - 入门
 ---
-# ts 函数式编程初探--环境配置
+
+# 环境配置
 
 ## 初始化
 
