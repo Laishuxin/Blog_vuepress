@@ -1,4 +1,4 @@
-const { pCate } = require("./const")
+const { pCate } = require("./nav_path")
 
 const categorySeriesGroup = {
   title: '系列文章',

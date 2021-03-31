@@ -11,6 +11,9 @@ const timestamp = [
   ],
 ]
 
-const plugins = [timestamp]
+const backToTop = '@vuepress/back-to-top'
+const smoothScroll = 'vuepress-plugin-smooth-scroll'
+
+const plugins = [timestamp, backToTop, smoothScroll]
 
 module.exports = plugins
