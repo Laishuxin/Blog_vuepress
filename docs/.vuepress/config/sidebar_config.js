@@ -1,15 +1,15 @@
 const sidebar = {
-  '/categories/fe_base/html_base/': getcategoriesFeBaseHtml(),
-  '/categories/fe_base/css_base/': getcategoriesFeBaseCss(),
-  '/categories/fe_base/javascript_base/': getcategoriesFeBaseJavascript(),
-  '/categories/fe_base/typescript_base/': getcategoriesFeBaseTypescript(),
-  '/categories/series/fp_ts/': getcategoriesSeriesFpTs(
+  '/cate/fe_base/html_base/': getCateFeBaseHtml(),
+  '/cate/fe_base/css_base/': getCateFeBaseCss(),
+  '/cate/fe_base/javascript_base/': getCateFeBaseJavascript(),
+  '/cate/fe_base/typescript_base/': getCateFeBaseTypescript(),
+  '/cate/series/fp_ts/': getCateSeriesFpTs(
     '函数式编程入门',
     '函数式编程进阶',
   ),
-  '/categories/env_config/': getcategoriesEnvConfig(),
-  '/categories/series/': ['fp_ts'],
-  '/categories/fe_base/': [
+  '/cate/env_config/': getCateEnvConfig(),
+  '/cate/series/': ['fp_ts'],
+  '/cate/fe_base/': [
     'html_base/',
     'css_base/',
     'javascript_base/',
@@ -17,7 +17,7 @@ const sidebar = {
   ],
 }
 
-function getcategoriesSeriesFpTs(groupA, groupB) {
+function getCateSeriesFpTs(groupA, groupB) {
   return [
     {
       title: groupA,
@@ -27,28 +27,28 @@ function getcategoriesSeriesFpTs(groupA, groupB) {
     {
       title: groupB,
       collapsable: false,
-      children: ['10_monad'],
+      children: ['10_todo'],
     },
   ]
 }
 
-function getcategoriesFeBaseHtml() {
+function getCateFeBaseHtml() {
   return ['layout', 'labels']
 }
 
-function getcategoriesFeBaseCss() {
+function getCateFeBaseCss() {
   return ['selector']
 }
 
-function getcategoriesFeBaseJavascript() {
+function getCateFeBaseJavascript() {
   return ['this']
 }
 
-function getcategoriesFeBaseTypescript() {
+function getCateFeBaseTypescript() {
   return ['interface']
 }
 
-function getcategoriesEnvConfig() {
+function getCateEnvConfig() {
   return ['vite_vue3_ts']
 
 }

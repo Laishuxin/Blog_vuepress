@@ -8,8 +8,8 @@ const BLOG_AUTHOR = process.env.BLOG_AUTHOR || 'ru shui'
 module.exports = config({
   base: '/Blog_vuepress/',
   lang: 'zh-CN',
-  title: '君子之交淡如水',
-  description: `To Build Amazing Things!`,
+  title: 'Ru Shui',
+  description: `To Build Amazing Things !`,
   theme: 'vuepress-theme-hope',
   head,
   themeConfig:{
@@ -21,6 +21,11 @@ module.exports = config({
     },
     nav,
     sidebar,
+    footer: {
+      display: true,
+      content: '<h2 style="width:100%; min-width: 100%;">Ru Shui</h2>',
+      copyright: `MIT Licensed | Copyright © 2021-present <a href='/about'>Ru Shui</a>`
+    },
     nextLinks: true,
     prevLinks: true,
     breadcrumb: true,
@@ -33,7 +38,7 @@ module.exports = config({
       minLength: 200,
     },
     comment: {
-      type: 'vssue',
+      type: 'disable',
     },
     themeColor: { blue: '#2196f3' },
     mdEnhance: {

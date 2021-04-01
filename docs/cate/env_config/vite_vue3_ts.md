@@ -1,4 +1,17 @@
-# vite + vue + ts 环境配置
+---
+title: vite + vue + ts 环境配置
+time: 2021-04-01
+author: ru shui
+category: 环境配置
+tag:
+  - frontend
+  - typescript
+  - vite
+  - vue
+  - env config
+visitor: false
+article: true
+---
 
 ## 初始化
 

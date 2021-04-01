@@ -1,4 +1,15 @@
-# typescript 函数式编程
+---
+title: typescript 函数式编程
+time: 2021-04-01
+author: ru shui
+category: 系列文章
+tag:
+  - frontend
+  - typescript
+  - functional programming
+visitor: false
+article: false
+---
 
 ## 写在前面
 

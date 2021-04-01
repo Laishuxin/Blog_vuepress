@@ -1,15 +1,16 @@
 ---
-time: 2021-3-30
+title: 环境配置
+time: 2021-04-01
+author: ru shui
 category: 系列文章
-visitor: false
-# sidebar: false
-tags:
-  - 函数式编程
+tag:
+  - frontend
   - typescript
-  - 入门
+  - functional programming
+  - base
+visitor: false
+article: true
 ---
-
-# 环境配置
 
 ## 初始化
 
@@ -111,4 +112,4 @@ describe('test config', () => {
 
 运行测试脚本。`yarn test:unit`后终端会出现如下字样，表示配置成功：
 
-<img src="images/image-20210330101435373.png" alt="image-20210330101435373" style="zoom:80%; border-radius: 10px!important" />
+<img src="./images/image-20210330101435373.png" alt="image-20210330101435373" style="zoom:80%; border-radius: 10px!important" />

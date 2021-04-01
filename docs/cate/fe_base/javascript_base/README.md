@@ -7,6 +7,7 @@ tag:
   - frontend
   - javascript
 visitor: false
+article: false
 ---
 
 javascript base home page
