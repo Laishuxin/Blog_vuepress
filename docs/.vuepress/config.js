@@ -24,7 +24,7 @@ module.exports = config({
     footer: {
       display: true,
       content: '<h2 style="width:100%; min-width: 100%;">Ru Shui</h2>',
-      copyright: `MIT Licensed | Copyright © 2021-present <a href='/about'>Ru Shui</a>`
+      copyright: `MIT Licensed | Copyright © 2021-present Ru Shui`
     },
     nextLinks: true,
     prevLinks: true,
