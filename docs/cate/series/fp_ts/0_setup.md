@@ -12,6 +12,8 @@ visitor: false
 article: true
 ---
 
+在开始项目之前，我们先为项目搭配环境。
+
 ## 初始化
 
 ```bash
@@ -35,17 +37,21 @@ mkdir ./unit
 ### typescript 配置
 
 在根目录下，执行`tsc --init`初始化`typescript`配置：
+这里我们为`./src`配置别名，让`@/`指向`./src/`中的文件。
 
-```ts
+```ts{9-12}
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2020",
     "module": "commonjs",
     "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+    // "rootDir": "./src",
     "strict": true,
     "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "types": ["jest"],
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -58,13 +64,15 @@ mkdir ./unit
 ### jest 配置
 
 在项目的根目录下，创建`jest.config.js`进行配置：
-
 ```js
 // @/jest.config.js
 module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1'
+  }
 }
 ```
 

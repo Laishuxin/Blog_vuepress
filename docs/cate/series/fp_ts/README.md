@@ -13,6 +13,16 @@ article: false
 
 ## 写在前面
 
+该系列是在阅读《JavaScript ES6 函数式编程入门》有感而写，更讲究是如何通过 typescript 实现函数式编程，里面不会过多涉及概念。
+具体的概念可以参考该书提供的说明，或者可以阅读阮一峰老师所写的：
+
+- [函数式编程初探](http://www.ruanyifeng.com/blog/2012/04/functional_programming.html)
+- [函数式编程入门教程](https://ruanyifeng.com/blog/2017/02/fp-tutorial.html)
+
+里面已经把函数式编程的基本概念理清。
+
+本系列的代码将可以通过[该链接](https://github.com/Laishuxin/series_functional_programming_with_ts/tree/main/code)获得。
+
 ### 符号说明
 
 项目没有采用`webpack`，下面定义的符号只是为了明确指向。
@@ -24,7 +34,7 @@ article: false
 ## 函数式编程入门
 
 - [环境配置](./0_setup.md)
-- [高阶函数](1_hoc.md)
+- [高阶函数](./1_concept.md)
 
 ## 函数式编程进阶
 
