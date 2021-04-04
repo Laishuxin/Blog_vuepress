@@ -22,7 +22,7 @@ function getCateSeriesFpTs(groupA, groupB) {
     {
       title: groupA,
       collapsable: false,
-      children: ['0_setup', '1_hoc'],
+      children: ['0_setup', '1_hoc', '2_closure_hoc'],
     },
     {
       title: groupB,

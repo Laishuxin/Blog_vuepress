@@ -2,7 +2,7 @@
 title: 系列文章
 time: 2021-03-31
 author: ru shui
-category: 系列文章
+# category: 系列文章
 tag:
   - frontend
   - typescript
@@ -11,4 +11,5 @@ article: false
 ---
 
 
-# 系列文章
+<!-- # 系列文章 -->
++ [typescript函数式编程](./fp_ts/)

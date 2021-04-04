@@ -35,6 +35,7 @@ article: false
 
 - [环境配置](./0_setup.md)
 - [高阶函数](./1_concept.md)
+- [闭包与高阶函数](./2_closure_hoc.md)
 
 ## 函数式编程进阶
 

@@ -6,8 +6,8 @@ category: 系列文章
 tag:
   - frontend
   - typescript
-  - function programming
+  - functional programming
   - advance
 visitor: false
-article: true
+article: false
 ---
