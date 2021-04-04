@@ -7,6 +7,7 @@ const sidebar = {
     '函数式编程入门',
     '函数式编程进阶',
   ),
+  '/cate/series/encapsulation/': getCateSeriesEnc('网络请求相关'),
   '/cate/env_config/': getCateEnvConfig(),
   '/cate/series/': ['fp_ts'],
   '/cate/fe_base/': [
@@ -29,6 +30,16 @@ function getCateSeriesFpTs(groupA, groupB) {
       collapsable: false,
       children: ['10_todo'],
     },
+  ]
+}
+
+function getCateSeriesEnc(groupA) {
+  return [
+    {
+      title: groupA,
+      collapsable: false,
+      children: ['axios', 'fetch']
+    }
   ]
 }
 

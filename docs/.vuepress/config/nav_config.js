@@ -18,7 +18,10 @@ const nav = [
       },
       {
         text: '系列文章',
-        items: [{ text: '函数式编程', link: '/cate/series/fp_ts/' }],
+        items: [
+          { text: '函数式编程', link: '/cate/series/fp_ts/' },
+          { text: '常用工具封装', link: '/cate/series/encapsulation/' },
+        ],
       },
       {
         text: '环境配置',

@@ -11,6 +11,7 @@
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
+    "dev": "yarn docs:dev",
     "deploy": "bash deploy.sh"
   }
 }
