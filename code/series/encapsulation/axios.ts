@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosStatic } from 'axios'
+import axios, { AxiosStatic } from 'axios'
 import qs from 'qs'
 const setRequestUrl = (axios: AxiosStatic): void => {
   let baseUrl: string
