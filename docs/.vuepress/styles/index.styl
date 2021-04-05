@@ -128,7 +128,7 @@
 }
 $font-family1 = 'Josefin Sans',Arial,Helvetica,'Nimbus Sans L',sans-serif;
 $font-family2 = 'Quattrocento',Arial,Helvetica,'Nimbus Sans L',sans-serif;
-
+$font-family0 = Arial, Helvetica, sans-serif;
 html, body {
   font-family: $font-family1;
 }
@@ -137,7 +137,7 @@ h1, h2, h3, h4, h5, h6, [class='title$'] {
   font-family: $font-family1!important;
 }
 
-div, span, p, a, h1, h2, h3, h4, h5, h6,img, li, label {
+div, p, span, a, h1, h2, h3, h4, h5, h6,img, li, label {
   &::selection {
     background: var(--accent-color-a15);
     color: var(--accent-color);
@@ -145,11 +145,15 @@ div, span, p, a, h1, h2, h3, h4, h5, h6,img, li, label {
   font-family: $font-family2;
 }
 
-code {
-  &::selection {
-    background: var(--accent-color-a15);
-    color: var(--accent-color);
-  }
+// code, span {
+//   &::selection {
+//     background: var(--accent-color-a15);
+//     color: var(--accent-color);
+//   }
+// }
+
+code, span[class*='token'] {
+  font-family: $font-family0;
 }
 
 .dropdown-subtitle span {

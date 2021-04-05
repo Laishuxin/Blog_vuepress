@@ -5,10 +5,12 @@ const nav = [
   },
   {
     text: '分类',
+    link: '/category/',
     ariaLabel: '分类',
     items: [
       {
         text: '前端基础',
+        // link: '/category/fe_base',
         items: [
           { text: 'html', link: '/cate/fe_base/html_base/' },
           { text: 'css', link: '/cate/fe_base/css_base/' },
@@ -18,6 +20,7 @@ const nav = [
       },
       {
         text: '系列文章',
+        // link: '/category/series/',
         items: [
           { text: '函数式编程', link: '/cate/series/fp_ts/' },
           { text: '常用工具封装', link: '/cate/series/encapsulation/' },
@@ -25,6 +28,7 @@ const nav = [
       },
       {
         text: '环境配置',
+        // link: '/category/env_config/',
         items: [{ text: '项目环境配置', link: '/cate/env_config/' }],
       },
     ],
