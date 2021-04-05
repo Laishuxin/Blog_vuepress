@@ -12,6 +12,7 @@ visitor: false
 article: true
 ---
 （本节代码存放于[axios封装](https://github.com/Laishuxin/Blog_vuepress/blob/main/code/series/encapsulation/axios.ts)）
+
 命名规范：
 一般而言，对网络请求相关的文件会存放在`api`文件夹中。对于`axios`一般命名为`http.js`或`http.ts`。
 
