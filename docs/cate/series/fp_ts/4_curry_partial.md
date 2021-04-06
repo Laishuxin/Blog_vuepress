@@ -1,0 +1,302 @@
+---
+title: 柯里化与偏应用
+time: 2021-04-06
+author: ru shui
+category: 系列文章
+tag:
+  - frontend
+  - typescript
+  - curry
+  - partial
+  - functional programming
+visitor: false
+article: true
+---
+
+(本节代码存放于[4_curry_partial](https://github.com/Laishuxin/series_functional_programming_with_ts/tree/main/code/src/4_curry_partial))
+
+## 柯里化
+
+### introduction
+
+> 柯里化：把一个多参数的函数转换成一个嵌套的一元函数的过程。
+> 以一个简单的例子开始：
+
+```js
+const add = (x, y) => x + y
+const curriedAdd = (x) => (y) => x + y
+```
+
+上面第一个`add`函数是一个普通函数，而`curriedAdd`是经过柯里化后的`add`函数，其作用就是将`add`由两个参数转换成一个参数的函数。**注意**这里使用了闭包将变量`x`缓存下来。
+
+于是乎我们可以这样调用柯里化后的函数`curriedAdd(4)(4)`，其结果与`add(4, 4)`一样，但是这样做的好处在于，我们可以将部分变量缓存下来，方便后续的调用。
+
+来看下面的一个例子：
+假设我们需要编写一个创建列表的函数。例如：我们需要创建`tableOf2`，`tableOf3`，`tableOf3`, `tableOf4`...
+
+最直接的方式如下：
+
+```ts
+const tableOf2 = (y) => 2 * y
+const tableOf3 = (y) => 3 * y
+const tableOf4 = (y) => 4 * y
+
+tableOf2(4) // 8
+tableOf2(5) // 10
+tableOf2(6) // 12
+```
+
+但是，这样做太过繁琐，如果我们需要 tableOf1 - tableOf100，那么我们需要做太多无用功。于是我们会想到用一个通用的方法：
+
+```ts
+const genericTable = (x, y) => x * y
+```
+
+然后通过指定变量 `x`来实现一开始的功能，具体如下：
+
+```ts
+// tableOf2
+genericTable(2, 4) // 8
+genericTable(2, 5) // 10
+genericTable(2, 6) // 12
+```
+
+这样做又带来了新的问题，就是我们每次调用的时候都需要指定变量`x`，于是我们在想，能否既能减少重复的代码，又不用每次调用的时候传入变量`x`，这就需要用到柯里化技术了。
+
+还记得我们之前对柯里化的定义？柯里化就是将多参数函数转换成一元（单）参数函数的过程。所以我们可以这样调用：
+
+```ts
+const curriedGenericTable = curry(genericTable)
+const tableOf2 = curriedGenericTable(2)
+const tableOf3 = curriedGenericTable(3)
+const tableOf4 = curriedGenericTable(4)
+```
+
+接下来我们就来实现`curry`函数。
+
+### implementation
+
+#### version1：二元函数的柯里化
+
+```ts
+// curry1.ts
+const curry = (fn: Function): Function => {
+  return (arg1: number): Function => {
+    return (arg2: number) => fn(arg1, arg2)
+  }
+}
+```
+
+我们创建了一个对二元函数(接收两个变量的函数)进行柯里化。执行柯里化的过程就是不断减少（缓存）变量的过程。
+
+既然柯里化那么好用，那么它能否处理多参数的函数呢？在实现多参数柯里化之前，来看下面一个例子：
+
+```js
+type Mode = 'DEBUG' | 'ERROR' | 'WARN'
+const loggerHelper = (
+  mode: Mode,
+  initialMessage: string,
+  errorMessage: string,
+  lineNo: number,
+) => {
+  switch (mode) {
+    case 'DEBUG':
+      console.debug(`${initialMessage}${errorMessage} at line: ${lineNo}`)
+      break
+    case 'ERROR':
+      console.error(`${initialMessage}${errorMessage} at line: ${lineNo}`)
+      break
+    case 'WARN':
+      console.warn(`${initialMessage}${errorMessage} at line: ${lineNo}`)
+      break
+    default:
+      throw 'Wrong mode'
+  }
+}
+```
+
+我们创建了一个日志打印助手，然后在开发的时候我们可以这样使用：
+
+```ts
+loggerHelper('ERROR', 'Error At a1.js', 'Invalid argument passed', 1)
+loggerHelper('ERROR', 'Error At a1.js', 'undefined argument', 2)
+loggerHelper('ERROR', 'Error At a1.js', 'curry function not found', 3)
+loggerHelper('ERROR', 'Error At a1.js', 'slice is not defined', 4)
+```
+
+从上面的例子我们不难发现，我们又一次陷入传递重复参数的窘境。接下来让我们来实现可变参数的柯里化。
+
+```ts
+// curry.ts
+const curry = (fn: Function): Function => {
+  const curriedFn: Function = (...arg1: any[]) => {
+    if (arg1.length < fn.length) {
+      return (...arg2: any[]) => curriedFn(...arg1, ...arg2)
+    }
+    return fn(...arg1)
+  }
+
+  return curriedFn
+}
+export default curry
+```
+
+我们先把代码进行简化：
+
+```ts
+const curry = (fn: Function): Function => {
+  const curriedFn: Function = (...arg1: any[]) => {}
+
+  return curriedFn
+}
+```
+
+先定义好`curry`函数，接收一个函数返回一个函数。所以剩下的主要逻辑就落在`curriedFn`上了。
+
+首先明确`curriedFn`的功能：允许我们实现不定参数的柯里化函数。所以它接收一个变参数列表`...arg1`。我们判断传入的参数长度是否与最初的函数参数列表匹配。如果是则直接执行原先的函数，并返回结果。也就是如下代码：
+
+```ts
+const curriedFn: Function = (...arg1: any[]) => {
+  if (arg1.length < fn.length) {
+    return
+  }
+
+  // 这里的隐藏条件就是arg1.length >= fn.length
+  return fn(...arg1)
+}
+```
+
+接下来就是处理那些参数还达不到要求的。如果参数达不到要求，我们还需要继续返回一个函数，并且与原先的参数进行合并。然后再进行一次判断，判断合并后的函数参数个数是否与最开始的函数参数个数匹配，如此往复。显然，返回的函数的逻辑与`curriedFn`相同，所以我们直接返回`curriedFn(...arg1, ...arg2)`，使用展开运算将参数合并。
+
+有了变参数的柯里化，我们就可以修改我们的日志助手了。
+
+### application
+
+```ts
+const curriedLoggerHelper = curry(loggerHelper)('ERROR', 'Error At a1.js')
+curriedLoggerHelper('Invalid argument passed', 1)
+curriedLoggerHelper('undefined argument', 2)
+curriedLoggerHelper('curry function not found', 3)
+curriedLoggerHelper('slice is not defined', 4)
+```
+
+通过柯里化，我们将前两个参数进行缓存复用，实现与原先一样的功能。
+
+让我们再来看一个例子，使用柯里化简化我们的乘法运算：
+
+```ts
+const multiple = (x: number, y: number, z: number) => x * y * z
+const curriedMultiple = curry(multiple)
+const multiple2 = curriedMultiple(2)
+const multiple6 = multiple2(3)
+const multiple8 = multiple2(4)
+
+console.log(`2 * 6 = ${multiple6(2)}`)
+console.log(`2 * 8 = ${multiple8(2)}`)
+// 2 * 6 = 12
+// 2 * 8 = 16
+```
+
+有了柯里化我们就可以创建一些实用的函数，下面让我们开始动手把。
+第一个要实现的函数是柯里化一个正则匹配函数：
+
+```ts
+const match = curry((expr: RegExp, str: string) => {
+  return str.match(expr)
+})
+
+const hasNumber = match(/[0-9]+/)
+
+let filter = curry((fn: Function, arr: Array<string>) => {
+  return arr.filter(fn as any)
+})
+
+let findNumbersInArray = filter(hasNumber)
+
+const containNumber = findNumbersInArray([
+  '1',
+  'aa',
+  'has number 1',
+  'not number',
+])
+console.log(containNumber)
+// [ '1', 'has number 1' ]
+```
+
+1. 我们把字符和匹配规则封装到一个函数，并且对其柯里化，由于柯里化缓存变量的顺序是**从左往右自行的**，我们这里想要缓存的是匹配规则，所以把`expr`放在第一个参数的位置。
+2. 同样的道理，实现`filter`要缓存的是实现过滤的函数，所以把`fn`放在第一个参数位置上。
+3. 这样我们就有了两个柯里化函数`hasNumber`，`filter`，接下来我们只需将柯里化后的函数缺少的参数补足即可。
+   - 对于`filter`我们只需要往里面填充一个过滤函数`hasNumber`。
+   - 对于`hasNumber`，事实上我们已经在`arr.filter`中已经填充好了对应的参数了。
+
+## 偏应用
+
+### introduction
+
+在讲偏应用之前，我们来看一个例子：
+
+```ts
+setTimeout(() => console.log('do something1', 10))
+setTimeout(() => console.log('do something2', 10))
+setTimeout(() => console.log('do something3', 10))
+```
+
+我们设置一个定时器，每隔 10s 就在终端输出信息。这里我们重复地使用第二个参数。那么我们能否将第二个参数缓存/隐藏起来？如果我们还用柯里化能实现吗？
+
+答案是不行的。这是因为柯里化的执行缓存顺序是**从左往右**进行缓存的，然而我们要缓存的参数在第二个位置上，所以不能直接使用柯里化。不过我们可以通过一个取巧的方式实现：
+
+```ts
+function setTimeoutWrapper(ms: number, callback: Function) {
+  setTimeout(callback, ms)
+}
+```
+
+这样我们就可以使用柯里化了：`curry(setTimeoutWrapper)(10)`。不过，这样的实现我们需要额外地使用一个变量/函数。那么有什么办法可以不需要中间变量实现上述需求？这就是我们将要讲的偏应用了。
+
+偏应用的实现主要依赖偏函数`partial`。与柯里化类似，偏应用允许根据需要缓存部分变量，同样也是返回一个函数，该函数的功能与传入函数一样，只是我们缓存了部分的参数。来看具体的实现：
+
+### implementation
+
+```ts
+// partial.ts
+
+const partial = (fn: Function, ...partialArgs: any[]): Function => {
+  const partialFn: Function = (...rest: any[]) => {
+    const args = []
+    for (
+      let p = 0, r = 0, pLen = partialArgs.length, rLen = rest.length;
+      p < pLen && r < rLen;
+      p++
+    ) {
+      if (partialArgs[p] === undefined) {
+        args.push(rest[r++])
+      } else {
+        args.push(partialArgs[p])
+      }
+    }
+    return fn(...args)
+  }
+  return partialFn
+}
+
+export default partial
+// examples:
+const setTimeoutWithTenMs = partial(setTimeout, undefined, 10)
+setTimeoutWithTenMs(() => console.log('hello 1'))
+setTimeoutWithTenMs(() => console.log('hello 2'))
+setTimeoutWithTenMs(() => console.log('hello 3'))
+```
+
+在使用`partial`函数时，我们根据需要选择参数，对于不需要缓存的参数，我们用`undefined`填充。返回后的函数我们则需要填充之前用 undefined 填充的部分按照顺序补回去。
+`partial`的主要难点在于对参数的合并。以`setTimeout`为例，我们需要收集`[callback, ms]`。由于一开始我们传入的参数为`[undefined, 10]`，我们还差一个`callback`没有传入。使用`setTimeoutWithTenMs`时，我们传入`callback`。这样参数列表已经收集完毕，剩下的任务就是进行合并了。
+
+这里使用了一个数组来收集合并的参数，这是因为如果在原参数列表`partialArgs`上进行按位填充，后续就无法继续调用了。
+我们遍历原参数列表`partialArgs`，发现当前位置为`undefined`时，我们就到`rest`参数列表中查找，把找到的参数`push`到`args`中即可。
+
+收集完成后，调用原先的函数，并且返回结果。
+
+<!-- ### application -->
+
+## wrap up
+
+至此，我们把柯里化和偏应用讲完了。柯里化和偏函数是两个非常强度的工具，对于性能的提升有巨大的帮助。涉及到需要缓存的地方，可以用这两种方法进行缓存，具体需要用到哪些函数视情况而定。

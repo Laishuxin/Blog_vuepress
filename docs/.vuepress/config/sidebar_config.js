@@ -3,10 +3,7 @@ const sidebar = {
   '/cate/fe_base/css_base/': getCateFeBaseCss(),
   '/cate/fe_base/javascript_base/': getCateFeBaseJavascript(),
   '/cate/fe_base/typescript_base/': getCateFeBaseTypescript(),
-  '/cate/series/fp_ts/': getCateSeriesFpTs(
-    '函数式编程入门',
-    '函数式编程进阶',
-  ),
+  '/cate/series/fp_ts/': getCateSeriesFpTs('函数式编程入门', '函数式编程进阶'),
   '/cate/series/encapsulation/': getCateSeriesEnc('网络请求相关'),
   '/cate/env_config/': getCateEnvConfig(),
   '/cate/series/': ['fp_ts'],
@@ -23,7 +20,13 @@ function getCateSeriesFpTs(groupA, groupB) {
     {
       title: groupA,
       collapsable: false,
-      children: ['0_setup', '1_hoc', '2_closure_hoc', '3_fp_array'],
+      children: [
+        '0_setup',
+        '1_hoc',
+        '2_closure_hoc',
+        '3_fp_array',
+        '4_curry_partial',
+      ],
     },
     {
       title: groupB,
@@ -38,8 +41,8 @@ function getCateSeriesEnc(groupA) {
     {
       title: groupA,
       collapsable: false,
-      children: ['axios', 'fetch']
-    }
+      children: ['axios', 'fetch'],
+    },
   ]
 }
 
@@ -61,7 +64,6 @@ function getCateFeBaseTypescript() {
 
 function getCateEnvConfig() {
   return ['vite_vue3_ts']
-
 }
 
 module.exports = sidebar
