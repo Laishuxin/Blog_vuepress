@@ -6,8 +6,8 @@ category: 前端基础
 tag:
   - frontend
   - javascript
-  - base
 visitor: false
+article: true
 ---
 
 this指向问题

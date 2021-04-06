@@ -52,7 +52,7 @@ function getCateFeBaseCss() {
 }
 
 function getCateFeBaseJavascript() {
-  return ['this']
+  return ['event_loop']
 }
 
 function getCateFeBaseTypescript() {
