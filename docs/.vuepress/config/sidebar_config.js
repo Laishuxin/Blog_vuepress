@@ -1,3 +1,7 @@
+const { getFileNames, getFileNamesByGroups } = require('./utils')
+const { resolve } = require('path')
+const basePath = resolve(__dirname, '../../')
+
 const sidebar = {
   '/cate/fe_base/html_base/': getCateFeBaseHtml(),
   '/cate/fe_base/css_base/': getCateFeBaseCss(),
@@ -11,28 +15,24 @@ const sidebar = {
     'html_base/',
     'css_base/',
     'javascript_base/',
-    'typescript_base/',
-  ],
+    'typescript_base/'
+  ]
 }
 
 function getCateSeriesFpTs(groupA, groupB) {
+  const fpTsPath = resolve(basePath, './cate/series/fp_ts/')
+  const group = getFileNamesByGroups(fpTsPath, [groupA, groupB])
   return [
     {
       title: groupA,
       collapsable: false,
-      children: [
-        '0_setup',
-        '1_hoc',
-        '2_closure_hoc',
-        '3_fp_array',
-        '4_curry_partial',
-      ],
+      children: group[groupA]
     },
     {
       title: groupB,
       collapsable: false,
-      children: ['10_todo'],
-    },
+      children: group[groupB]
+    }
   ]
 }
 
@@ -41,8 +41,8 @@ function getCateSeriesEnc(groupA) {
     {
       title: groupA,
       collapsable: false,
-      children: ['axios', 'fetch'],
-    },
+      children: ['axios', 'fetch']
+    }
   ]
 }
 
@@ -55,7 +55,8 @@ function getCateFeBaseCss() {
 }
 
 function getCateFeBaseJavascript() {
-  return ['event_loop']
+  const jsBasePath = resolve(basePath, './cate/fe_base/javascript_base')
+  return getFileNames(jsBasePath)
 }
 
 function getCateFeBaseTypescript() {
