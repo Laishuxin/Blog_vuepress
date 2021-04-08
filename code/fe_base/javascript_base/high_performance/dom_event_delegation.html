@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>event delegation</title>
+  <style>
+    li {
+      height: 40px;
+      margin: 20px 0;
+    }
+
+    li:nth-child(even) {
+      background: lightgreen;
+    }
+
+    li:nth-child(odd) {
+      background: lightgray;
+    }
+  </style>
+</head>
+
+<body>
+  <ul class="list">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+  <script>
+    // const list = document.querySelectorAll('li')
+    // Array.from(list).forEach(el => {
+    //   el.addEventListener('click', () => {
+    //     alert('click...')
+    //   })
+    // })
+    const ul = document.querySelector('.list')
+    const list = document.querySelectorAll('li')
+    ul.addEventListener('click', (e) => {
+      const target = e.target
+      if (target.tagName.toLowerCase() !== 'li') return
+      const index = Array.prototype.indexOf.call(list, target)
+      alert(`current li: index = ${index}`)
+    })
+  </script>
+</body>
+
+</html>
