@@ -16,6 +16,7 @@ const nav = [
           { text: 'css', link: '/cate/fe_base/css_base/' },
           { text: 'javascript', link: '/cate/fe_base/javascript_base/' },
           { text: 'typescript', link: '/cate/fe_base/typescript_base/' },
+          { text: 'network', link: '/cate/fe_base/network_base/' },
         ],
       },
       {

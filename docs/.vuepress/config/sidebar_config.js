@@ -7,6 +7,7 @@ const sidebar = {
   '/cate/fe_base/css_base/': getCateFeBaseCss(),
   '/cate/fe_base/javascript_base/': getCateFeBaseJavascript(),
   '/cate/fe_base/typescript_base/': getCateFeBaseTypescript(),
+  '/cate/fe_base/network_base/': getCateFeBaseNetwork(),
   '/cate/series/fp_ts/': getCateSeriesFpTs('函数式编程入门', '函数式编程进阶'),
   '/cate/series/encapsulation/': getCateSeriesEnc('网络请求相关'),
   '/cate/env_config/': getCateEnvConfig(),
@@ -57,6 +58,11 @@ function getCateFeBaseCss() {
 function getCateFeBaseJavascript() {
   const jsBasePath = resolve(basePath, './cate/fe_base/javascript_base')
   return getFileNames(jsBasePath)
+}
+
+function getCateFeBaseNetwork() {
+  const networkBasePath = resolve(basePath, './cate/fe_base/network_base')
+  return getFileNames(networkBasePath)
 }
 
 function getCateFeBaseTypescript() {

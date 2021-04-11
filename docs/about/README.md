@@ -6,10 +6,6 @@ visitor: false
 article: false
 sidebar: false
 
-features:
-- title: 主打系列文章
-  details: 本博客以系列文章为中心，目前已有的系列有函数式编程...
-  link: /cate/series
 ---
 <img src="./images/bg_about.jpg" style="width: 100%; border-radius: 10px;" />
 
