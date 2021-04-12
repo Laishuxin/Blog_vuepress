@@ -1,0 +1,38 @@
+<!-- introduction.html -->
+
+<!DOCTsetTimeout()YPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>introduction to debounce</title>
+  <style>
+    .box {
+      --height: 100px;
+      width: 500px;
+      height: var(--height);
+      line-height: var(--height);
+      background: black;
+      color: white;
+      margin: 100px auto;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">0</div>
+  <script>
+    const box = document.querySelector('.box')
+    let count = 0
+    function increment() {
+      count++
+      box.innerHTML = count
+    }
+    box.addEventListener('mousemove', increment)
+  </script>
+</body>
+
+</html>

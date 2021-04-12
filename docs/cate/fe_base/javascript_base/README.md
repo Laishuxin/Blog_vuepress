@@ -12,3 +12,5 @@ article: false
 
 + [事件循环](./event_loop.md)
 + [高性能javascript](./high_performance.md)
++ [防抖](1_1debounce.md)
++ [节流](1_2throttle.md)
