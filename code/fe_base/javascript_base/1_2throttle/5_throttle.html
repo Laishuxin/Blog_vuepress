@@ -1,0 +1,50 @@
+<!-- 5_throttle.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>throttle version5: cancel</title>
+  <style>
+    .box {
+      --height: 100px;
+      width: 500px;
+      height: var(--height);
+      line-height: var(--height);
+      background: black;
+      color: white;
+      margin: 100px auto;
+      text-align: center;
+    }
+    
+    #cancel {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">0</div>
+  <button id="cancel">cancel</button>
+  <script src="./5_throttle.js"></script>
+  <script>
+    const box = document.querySelector('.box')
+    const btn = document.querySelector('#cancel')
+    let count = 0
+
+    function increment() {
+      count++
+      box.innerHTML = count
+      console.log('this = ', this)
+    }
+    const throttledFn = throttle(increment, 3000, {leading: true})
+    box.addEventListener('mousemove', throttledFn)
+    btn.addEventListener('click', throttledFn.cancel)
+    
+  </script>
+</body>
+
+</html>
