@@ -205,10 +205,18 @@ function throttle(
 
 同样的道理，我们只需要在离开时执行回调函数处，加以判断即可，也就是`else if (timeout === null && trailing)`。
 
-
+### version4: leading && trailing
 ### version6: 取消
-
+```ts
+throttledFn.cancel = () => {
+  clear()
+  previous = 0
+}
+```
+我们只需要将返回的函数作为匿名函数，同时，添加上上面的取消函数即可。
 ## 应用场景
+和防抖一样，节流也是应用在高频触发的函数上。节流常用的高频函数有输入框的输入等。
+以输入框的输入为例，当用户输入时，我们会根据用户的输入返回特定的提示，这里需要用到就是节流而非防抖。
 
 ## reference
 + [JavaScript专题之跟着 underscore 学节流](https://github.com/mqyqingfeng/Blog/issues/26)
