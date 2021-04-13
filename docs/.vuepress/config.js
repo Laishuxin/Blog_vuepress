@@ -48,5 +48,8 @@ module.exports = config({
       align: true,
       footnote: true,
     },
+    pwa: {
+      cacheHTML: false
+    }
   },
 })
