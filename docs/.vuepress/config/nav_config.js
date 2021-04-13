@@ -28,6 +28,13 @@ const nav = [
         ],
       },
       {
+        text: '问题集',
+        items: [
+          { text: '编程问题集', link: '/cate/problem_sets/programming/'},
+          // {}
+        ]
+      },
+      {
         text: '环境配置',
         // link: '/category/env_config/',
         items: [{ text: '项目环境配置', link: '/cate/env_config/' }],
