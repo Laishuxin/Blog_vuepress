@@ -14,3 +14,4 @@ article: false
 + [高性能javascript](./high_performance.md)
 + [防抖](1_1debounce.md)
 + [节流](1_2throttle.md)
++ [拷贝](copy.md)
