@@ -70,7 +70,8 @@ function getCateFeBaseTypescript() {
 }
 
 function getCateEnvConfig() {
-  return ['vite_vue3_ts']
+  const envConfigPath = resolve(basePath, './cate/env_config/')
+  return getFileNames(envConfigPath)
 }
 
 module.exports = sidebar
