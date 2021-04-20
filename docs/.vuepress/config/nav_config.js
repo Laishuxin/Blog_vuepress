@@ -31,6 +31,7 @@ const nav = [
         text: '问题集',
         items: [
           { text: '编程问题集', link: '/cate/problem_sets/programming/'},
+          { text: '基础问题集', link: '/cate/problem_sets/basic/'},
           // {}
         ]
       },
