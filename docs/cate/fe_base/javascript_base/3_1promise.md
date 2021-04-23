@@ -164,7 +164,19 @@ function PromiseAll(iterable) {
 ```
 
 ## Promise.race
+
 ```js
+function PromiseRace(promises) {
+  return new Promise((resolve, reject) => {
+    if (!isIterable(promises)) {
+      reject(new TypeError(` is not iterable`))
+    }
+
+    for (const p of promises) {
+      Promise.resolve(p).then(resolve, reject)
+    }
+  })
+}
 ```
 
 ## Promise.finally
