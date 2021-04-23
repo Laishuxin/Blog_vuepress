@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jsonp-client</title>
+</head>
+
+<body>
+  <h1>服务器响应的内容</h1>
+  <p class="content"></p>
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script> -->
+  <!-- <script>
+    const serverAddr = 'http://localhost:8080/api'
+    const content = document.querySelector('.content')
+    $.ajax(serverAddr, {
+      method: 'GET',
+      dataType: 'jsonp',
+      success: (res) => {
+        console.log('success')
+        // console.log('res = ', res)
+        content.innerHTML = JSON.stringify(res)
+      }
+    })
+  </script> -->
+  <script>
+    const content = document.querySelector('.content')
+    function callback(data) {
+      content.innerHTML = JSON.stringify(data)
+    }
+  </script>
+  <script src="http://localhost:8080/api?callback=callback" />
+</body>
+
+</html>
